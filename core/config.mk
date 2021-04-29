@@ -295,8 +295,8 @@ FIND_LEAVES_EXCLUDES := $(addprefix --prune=, $(SCAN_EXCLUDE_DIRS) .repo .git)
 
 -include vendor/extra/BoardConfigExtra.mk
 
-ifneq ($(REVENGEOS_BUILD),)
-include vendor/revengeos/config/BoardConfigRevengeOS.mk
+ifneq ($(Phorx-OS_BUILD),)
+include vendor/Phorx-OS/config/BoardConfigPhorxos.mk
 endif
 
 # General entries for project pathmap.  Any entries listed here should
@@ -415,7 +415,6 @@ ifneq (,$(strip $(BUILD_ENV_SEQUENCE_NUMBER)))
 ifneq ($(BUILD_ENV_SEQUENCE_NUMBER),$(CORRECT_BUILD_ENV_SEQUENCE_NUMBER))
 $(warning BUILD_ENV_SEQUENCE_NUMBER is set incorrectly.)
 $(info *** If you use envsetup/lunch/choosecombo:)
-$(info ***   - Re-execute envsetup (". envsetup.sh"))
 $(info ***   - Re-run lunch or choosecombo)
 $(info *** If you use buildspec.mk:)
 $(info ***   - Look at buildspec.mk.default to see what has changed)
@@ -1245,11 +1244,11 @@ dont_bother_goals := out \
     vbmetaimage-nodeps \
     product-graph dump-products
 
-ifneq ($(REVENGEOS_BUILD),)
-ifneq ($(wildcard device/revengeos/sepolicy/common/sepolicy.mk),)
+ifneq ($(PHORX-OS_BUILD),)
+ifneq ($(wildcard device/Phorx-OS/sepolicy/common/sepolicy.mk),)
 ## We need to be sure the global selinux policies are included
 ## last, to avoid accidental resetting by device configs
-$(eval include device/revengeos/sepolicy/common/sepolicy.mk)
+$(eval include device/Phorx-OS/sepolicy/common/sepolicy.mk)
 endif
 endif
 
